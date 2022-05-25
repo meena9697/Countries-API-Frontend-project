@@ -62,9 +62,23 @@ export default function CountryPage() {
         >
           Population: {seleted_country.population}
         </Typography>
-        <Typography
+        {Object.keys(seleted_country.languages).map((key) => {
+          return (
+            <Typography
+              sx={{ fontSize: 20, color: "black" }}
+              color="text.secondary"
+              gutterBottom
+              key={seleted_country.cca2}
+            >
+              Languages: {seleted_country.languages[key]}
+            </Typography>
+          );
+        })}
+
+        {/* <Typography
           sx={{ fontSize: 20, color: "black" }}
           color="text.secondary"
+          gutterBottom
         >
           <p>Languages:</p>
           {Object.keys(seleted_country.languages).map((key) => {
@@ -72,7 +86,7 @@ export default function CountryPage() {
               <p key={seleted_country.cca2}>{seleted_country.languages[key]}</p>
             );
           })}
-        </Typography>
+        </Typography> */}
       </CardContent>
       <CardActions sx={{ justifyContent: "center" }}>
         <Button size="small">
