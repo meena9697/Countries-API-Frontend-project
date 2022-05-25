@@ -3,7 +3,7 @@ import TableBody from "@mui/material/TableBody";
 import MyTableRow from "./MyTableRow";
 
 export default function MyTableBody({
-    countriesdata,
+    countriesSearch,
     page,
     rowsPerPage,
     columns,
@@ -11,8 +11,8 @@ export default function MyTableBody({
     return (
         <>
             <TableBody>
-              {countriesdata &&
-                countriesdata
+              {countriesSearch &&
+                countriesSearch
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                         return <MyTableRow row={row} columns={columns} />;

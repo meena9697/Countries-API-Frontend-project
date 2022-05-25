@@ -3,12 +3,12 @@ import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
+import { useState } from "react";
 
 import useCountries from "../custom-hooks/useCountries";
 
 import MyTableBody from "../TableComponents/MyTableBody";
 import MyTableHead from "../TableComponents/MyTableHead";
-
 
 const columns = [
   {
@@ -35,7 +35,7 @@ const columns = [
 ];
 
 function CountriesPage() {
-//   const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -51,13 +51,14 @@ function CountriesPage() {
   const { countriesdata, error, loading } = useCountries(
     "https://restcountries.com/v3.1/all"
   );
-//   const handleSearch = (e) => {
-//     setKeyword(e.target.value);
-//   };
 
-//   const countrySearch = countriesdata?.filter((country) =>
-//     country.name.common.toLowerCase().includes(keyword)
-//   );
+  const handleSearch = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  const countriesSearch = countriesdata?.filter((country) =>
+    country.name.common.toLowerCase().includes(keyword)
+  );
 
   if (error) return <div>There is an error</div>;
   if (loading)
@@ -66,29 +67,33 @@ function CountriesPage() {
         <h1>Loading..</h1>
       </div>
     );
-return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+  return (
+    <div>
+      <input placeholder="Search country..." onChange={handleSearch}></input>
+      <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: 650 }}>
-            <Table stickyHeader aria-label="sticky table">
-                <MyTableHead columns={columns} />
-                <MyTableBody
-                    countriesdata={countriesdata}
-                    page={page}
-                    rowsPerPage={rowsPerPage}
-                    columns={columns}
-                />
-            </Table>
+          <Table stickyHeader aria-label="sticky table">
+            <MyTableHead columns={columns} />
+            <MyTableBody
+              countriesdata={countriesdata}
+              page={page}
+              rowsPerPage={rowsPerPage}
+              columns={columns}
+              countriesSearch={countriesSearch}
+            />
+          </Table>
         </TableContainer>
         <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={countriesdata.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={countriesdata.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
-    </Paper>
-);
+      </Paper>
+    </div>
+  );
 }
 export default CountriesPage;

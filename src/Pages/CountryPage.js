@@ -96,5 +96,6 @@ export default function CountryPage() {
     </React.Fragment>
   );
 
-  return <Card variant="outlined">{card}</Card>;
+  return <Card variant="outlined">{card}</Card>
+  
 }
