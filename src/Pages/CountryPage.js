@@ -1,26 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { matchPath, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
-import useCountry from "../custom-hooks/useCountry";
+import { fetchCountry } from "../redux/countryAction";
+// import useCountry from "../custom-hooks/useCountry";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
-import { matchPath, useLocation } from "react-router-dom";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
 
 export default function CountryPage() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const match = matchPath({ path: "/countries/:id" }, location.pathname);
   const country_name = match.params.id;
+  // const { country, error, loading } = useCountry(
+  //   `https://restcountries.com/v3.1/name/${country_name}`
+  // );
+  // console.log(country);
+  const country = useSelector((appState) => appState.countryitemData);
   console.log(country_name);
+  const loading = useSelector((appState) => appState.loading);
+  const error = useSelector((appState) => appState.error);
 
-  const { country, error, loading } = useCountry(
-    `https://restcountries.com/v3.1/name/${country_name}`
-  );
-  console.log(country);
+  useEffect(() => {
+    console.log("testing");
+    dispatch(fetchCountry(country_name));
+  }, [dispatch, country_name]);
 
   if (error) return <div>There is an error</div>;
   if (loading)
@@ -30,10 +40,9 @@ export default function CountryPage() {
       </div>
     );
 
-  const seleted_country = country.filter(
+  const seleted_country = Array.from(country.countryitemData).filter(
     (data) => data.name.common.toLowerCase() === country_name.toLowerCase()
   )[0];
-  console.log(seleted_country);
 
   const card = (
     <React.Fragment>
@@ -74,28 +83,12 @@ export default function CountryPage() {
             </Typography>
           );
         })}
-
-        {/* <Typography
-          sx={{ fontSize: 20, color: "black" }}
-          color="text.secondary"
-          gutterBottom
-        >
-          <p>Languages:</p>
-          {Object.keys(seleted_country.languages).map((key) => {
-            return (
-              <p key={seleted_country.cca2}>{seleted_country.languages[key]}</p>
-            );
-          })}
-        </Typography> */}
       </CardContent>
       <CardActions sx={{ justifyContent: "center" }}>
-        <Button size="small">
-          <Link to="/countries">Back</Link>
-        </Button>
+        <Link to="/countries">Back</Link>
       </CardActions>
     </React.Fragment>
   );
 
-  return <Card variant="outlined">{card}</Card>
-  
+  return <Card variant="outlined">{card}</Card>;
 }
