@@ -13,7 +13,7 @@ const countryReducer = (state = initialCountryState, action) => {
         loading: true,
       };
     case "FETCH_COUNTRY_SUCCESS":
-     console.log(action.payload)
+     console.log(action.payload, "Mazen")
       return {
         loading: false,
         countryitemData: action.payload,

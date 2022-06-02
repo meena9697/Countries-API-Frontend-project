@@ -6,5 +6,4 @@ const allReducers = combineReducers({
     countriesData: countriesReducer,
     countryitemData: countryReducer,
 });
-
 export default allReducers;

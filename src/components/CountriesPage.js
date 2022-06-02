@@ -5,11 +5,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Navigation from "./Navigation";
+
 
 // import useCountries from "../custom-hooks/useCountries";
 import MyTableBody from "../TableComponents/MyTableBody";
 import MyTableHead from "../TableComponents/MyTableHead";
-import { fetchCountries } from "../redux/countriesAction";
+import { fetchCountries } from "../redux/action/countriesAction";
 
 const columns = [
   {
@@ -81,8 +83,9 @@ function CountriesPage() {
     );
   return (
     <div>
-      <input placeholder="Search country..." onChange={handleSearch}></input>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <input placeholder="Search country..." onChange={handleSearch}></input>
+      <Navigation/>
         <TableContainer sx={{ maxHeight: 650 }}>
           <Table stickyHeader aria-label="sticky table">
             <MyTableHead columns={columns} />

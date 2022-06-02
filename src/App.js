@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import ButtonPage from "./Pages/ButtonPage";
-import CountriesPage from "./Pages/CountriesPage";
-import CountryPage from "./Pages/CountryPage";
+import ButtonPage from "./Components/ButtonPage";
+import CountriesPage from "./Components/CountriesPage";
+import CountryPage from "./Components/CountryPage";
 
 function App() {
   return (
