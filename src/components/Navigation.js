@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Menu from "@mui/material/Menu";
+import SearchCountries from "./SearchCountries";
 
 export default function Navigation() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -63,6 +64,7 @@ export default function Navigation() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
+        <SearchCountries/>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

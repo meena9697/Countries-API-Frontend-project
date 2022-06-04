@@ -1,3 +1,4 @@
+
 export const fetchCountries = () => {
   return async (dispatch) => {
     try {
@@ -11,5 +12,12 @@ export const fetchCountries = () => {
       console.log(error, "Error");
       dispatch({ type: "FETCH_COUNTRIES_FAILURE", payload: error })
     }
+  };
+};
+
+export const SearchCountriesResult = (success) => {
+  return {
+      type: 'SEARCH_COUNTRIES_SUCCESS',
+      payload: success,
   };
 };

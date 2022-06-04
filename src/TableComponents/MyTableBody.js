@@ -1,9 +1,10 @@
 import React from "react";
 import TableBody from "@mui/material/TableBody";
+
 import MyTableRow from "./MyTableRow";
 
 export default function MyTableBody({
-  countriesSearch,
+  countriesdata,
   page,
   rowsPerPage,
   columns,
@@ -11,8 +12,8 @@ export default function MyTableBody({
   return (
     <>
       <TableBody>
-        {countriesSearch &&
-          countriesSearch
+        {countriesdata &&
+          countriesdata
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row) => {
               return <MyTableRow row={row} columns={columns} />;

@@ -3,12 +3,10 @@ import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navigation from "./Navigation";
 
-
-// import useCountries from "../custom-hooks/useCountries";
 import MyTableBody from "../TableComponents/MyTableBody";
 import MyTableHead from "../TableComponents/MyTableHead";
 import { fetchCountries } from "../redux/action/countriesAction";
@@ -39,7 +37,7 @@ const columns = [
 
 function CountriesPage() {
   const dispatch = useDispatch();
-  const [keyword, setKeyword] = useState("");
+  // const [keyword, setKeyword] = useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -57,21 +55,11 @@ function CountriesPage() {
   // );
 
   const countriesdata = useSelector((appState) => appState.countriesData);
-  console.log(countriesdata, "check")
   const loading = useSelector((appState) => appState.loading);
   const error = useSelector((appState) => appState.error);
 
-  const handleSearch = (e) => {
-    setKeyword(e.target.value);
-  };
-
-  const countriesSearch = Array.from(countriesdata.countriesData)?.filter((country) =>
-    country.name.common.toLowerCase().includes(keyword)
-  );
-
   useEffect(() => {
     dispatch(fetchCountries());
-    console.log("testing");
   }, [dispatch]);
 
   if (error) return <div>There is an error</div>;
@@ -84,17 +72,17 @@ function CountriesPage() {
   return (
     <div>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
-      <input placeholder="Search country..." onChange={handleSearch}></input>
-      <Navigation/>
+        {/* <input placeholder="Search country..." onChange={handleSearch}></input> */}
+        <Navigation />
         <TableContainer sx={{ maxHeight: 650 }}>
           <Table stickyHeader aria-label="sticky table">
             <MyTableHead columns={columns} />
             <MyTableBody
-              countriesdata={countriesdata.countriesData}
+              countriesdata={countriesdata.SearchCountries}
               rowsPerPage={rowsPerPage}
               page={page}
               columns={columns}
-              countriesSearch={countriesSearch}
+              // countriesSearch={countriesSearch}
             />
           </Table>
         </TableContainer>

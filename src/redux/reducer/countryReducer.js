@@ -5,7 +5,6 @@ const initialCountryState = {
 };
 
 const countryReducer = (state = initialCountryState, action) => {
-  console.log("hi from country reducer", state);
   switch (action.type) {
     case "FETCH_COUNTRY_REQUEST":
       return {

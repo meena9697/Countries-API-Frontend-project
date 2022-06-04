@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { fetchCountryData } from "../redux/action/countryAction";
-// import useCountry from "../custom-hooks/useCountry";
 
 // import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -31,8 +30,6 @@ export default function CountryPage() {
   const error = useSelector((appState) => appState.countryitemData.error);
 
   useEffect(() => {
-    console.log("CHECK USE EFFECT");
-    console.log(country_name);
     dispatch(fetchCountryData(country_name));
   }, [dispatch, country_name]);
 
