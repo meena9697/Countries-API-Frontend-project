@@ -3,6 +3,7 @@ import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navigation from "./Navigation";
@@ -18,8 +19,8 @@ const columns = [
     minWidth: 170,
     align: "left",
   },
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "region", label: "Region", minWidth: 100 },
+  { id: "name", label: "Name", minWidth: 170 , align: "left"},
+  { id: "region", label: "Region", minWidth: 170, align: "left"},
   {
     id: "population",
     label: "Population",
@@ -33,6 +34,10 @@ const columns = [
     minWidth: 170,
     align: "left",
   },
+  { id:"favourites",
+    label:"Favourites",
+    align: "left",
+  }
 ];
 
 function CountriesPage() {

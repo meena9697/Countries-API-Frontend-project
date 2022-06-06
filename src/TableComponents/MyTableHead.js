@@ -13,8 +13,8 @@ export default function MyTableHead({ columns }) {
             align={column.align}
             style={{
                 minWidth: column.minWidth,
-                fontWeight: "bolder",
-                backgroundColor: "lightblue",
+                fontWeight: "bold",
+                backgroundColor: "white",
                 fontSize: 25,
               }}>
             {column.label}

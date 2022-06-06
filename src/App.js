@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import ButtonPage from "./Components/ButtonPage";
 import CountriesPage from "./Components/CountriesPage";
 import CountryPage from "./Components/CountryPage";
+import FavouritesPage from "./Components/FavouritesPage";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
         <Route path="/" element={<ButtonPage />} />
         <Route path="/countries" element={<CountriesPage />} />
         <Route path="/countries/:id" element={<CountryPage />} />
+        <Route path="/favourites" element={<FavouritesPage />} />
+
       </Routes>
     </>
   );

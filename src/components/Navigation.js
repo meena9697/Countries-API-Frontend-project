@@ -1,12 +1,20 @@
-import * as React from "react";
+import React, { useContext } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Menu from "@mui/material/Menu";
-import SearchCountries from "./SearchCountries";
+
+import SearchButton from "./SearchButton";
+import FavouritesButton from "./FavouritesButton";
+import ThemeButton from "./ThemeButton";
+import { ThemeContext, themes } from "./Theme";
 
 export default function Navigation() {
+  const { theme } = useContext(ThemeContext);
+
+  const themeColor = themes[theme];
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -62,9 +70,11 @@ export default function Navigation() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: themeColor.background }}>
         <Toolbar>
-        <SearchCountries/>
+          <SearchButton />
+          <FavouritesButton />
+          <ThemeButton />
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
