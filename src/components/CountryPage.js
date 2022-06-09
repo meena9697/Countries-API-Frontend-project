@@ -11,6 +11,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
+import Card from "@mui/material/Card";
 
 export default function CountryPage() {
   const dispatch = useDispatch();
@@ -44,47 +45,52 @@ export default function CountryPage() {
   function card() {
     return (
       <React.Fragment>
-        <CardMedia sx={{ textAlign: "center" }}>
-          <img src={seleted_country.flags.png} alt={""} />
-        </CardMedia>
-        <CardContent sx={{ textAlign: "center" }}>
-          <Typography
-            sx={{ fontSize: 20, color: "black" }}
-            color="text.secondary"
-            gutterBottom
-          >
-            Country: {country_name}
-          </Typography>
-          <Typography
-            sx={{ fontSize: 20, color: "black" }}
-            color="text.secondary"
-            gutterBottom
-          >
-            Region: {seleted_country.region}
-          </Typography>
-          <Typography
-            sx={{ fontSize: 20, color: "black" }}
-            color="text.secondary"
-            gutterBottom
-          >
-            Population: {seleted_country.population}
-          </Typography>
-          {Object.keys(seleted_country.languages).map((key) => {
-            return (
-              <Typography
-                sx={{ fontSize: 20, color: "black" }}
-                color="text.secondary"
-                gutterBottom
-                key={seleted_country.cca2}
-              >
-                Languages: {seleted_country.languages[key]}
-              </Typography>
-            );
-          })}
-        </CardContent>
-        <CardActions sx={{ justifyContent: "center" }}>
-          <Link to="/countries">Back</Link>
-        </CardActions>
+        <Card>
+          <CardMedia sx={{ textAlign: "center" }}>
+            <img src={seleted_country.flags.png} alt={""} />
+          </CardMedia>
+          <CardContent sx={{ textAlign: "center" }}>
+            <Typography
+              sx={{ fontSize: 20, color: "black" }}
+              color="text.secondary"
+              gutterBottom
+            >
+              <b>Country</b>: {country_name}
+            </Typography>
+            <Typography
+              sx={{ fontSize: 20, color: "black" }}
+              color="text.secondary"
+              gutterBottom
+            >
+              <b>Region</b>: {seleted_country.region}
+            </Typography>
+            <Typography
+              sx={{ fontSize: 20, color: "black" }}
+              color="text.secondary"
+              gutterBottom
+            >
+              <b>Population</b>: {seleted_country.population}
+            </Typography>
+            <Typography sx={{ fontSize: 20, color: "black" }}>
+              <b>Languages</b>:
+            </Typography>
+            {Object.keys(seleted_country.languages).map((key) => {
+              return (
+                <Typography
+                  sx={{ fontSize: 20, color: "black" }}
+                  color="text.secondary"
+                  gutterBottom
+                  key={seleted_country.cca2}
+                >
+                  {seleted_country.languages[key]}
+                </Typography>
+              );
+            })}
+          </CardContent>
+          <CardActions sx={{ justifyContent: "center" }}>
+            <Link to="/countries">Back</Link>
+          </CardActions>
+        </Card>
       </React.Fragment>
     );
   }

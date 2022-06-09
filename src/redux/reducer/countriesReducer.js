@@ -13,6 +13,7 @@ const countriesReducer = (state = initialState, action) => {
         loading: true,
       };
     case "FETCH_COUNTRIES_SUCCESS":
+      console.log(state, " STATE FROM SUCCESS");
       return {
         loading: false,
         countriesData: action.payload,
@@ -33,7 +34,6 @@ const countriesReducer = (state = initialState, action) => {
         ...state,
         SearchCountries: result,
       };
-
     default:
       return state;
   }

@@ -12,10 +12,10 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   "& .MuiSwitch-switchBase": {
     margin: 1,
     padding: 0,
-    transform: "translateX(6px)",
+    transform: "translateX(22px)",
     "&.Mui-checked": {
       color: "#FFF",
-      transform: "translateX(22px)",
+      transform: "translateX(6px)",
       "& .MuiSwitch-thumb:before": {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
           "#fff"
@@ -56,7 +56,6 @@ export default function ThemeButton() {
   const { theme, setTheme } = useContext(ThemeContext);
   const themeColor = themes[theme];
 
-
   const Handler = () => {
     if (theme === "dark") {
       setTheme("light");
@@ -68,7 +67,8 @@ export default function ThemeButton() {
     <div>
       <FormControlLabel
         control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-        label="Switch" sx={{color: themeColor.text, marginLeft: "25rem" }}
+        label="Switch"
+        sx={{ color: themeColor.text, marginLeft: "25rem" }}
         onClick={Handler}
       />
     </div>

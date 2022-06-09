@@ -19,8 +19,8 @@ const columns = [
     minWidth: 170,
     align: "left",
   },
-  { id: "name", label: "Name", minWidth: 170 , align: "left"},
-  { id: "region", label: "Region", minWidth: 170, align: "left"},
+  { id: "name", label: "Name", minWidth: 170, align: "left" },
+  { id: "region", label: "Region", minWidth: 170, align: "left" },
   {
     id: "population",
     label: "Population",
@@ -34,15 +34,11 @@ const columns = [
     minWidth: 170,
     align: "left",
   },
-  { id:"favourites",
-    label:"Favourites",
-    align: "left",
-  }
+  { id: "favourites", label: "Favourites", align: "left" },
 ];
 
 function CountriesPage() {
   const dispatch = useDispatch();
-  // const [keyword, setKeyword] = useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -54,10 +50,6 @@ function CountriesPage() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  // const { countriesdata, error, loading } = useCountries(
-  //   "https://restcountries.com/v3.1/all"
-  // );
 
   const countriesdata = useSelector((appState) => appState.countriesData);
   const loading = useSelector((appState) => appState.loading);

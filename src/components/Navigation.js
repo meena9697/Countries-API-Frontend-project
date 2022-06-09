@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Menu from "@mui/material/Menu";
+import { Badge } from "@mui/material";
 
 import SearchButton from "./SearchButton";
 import FavouritesButton from "./FavouritesButton";
 import ThemeButton from "./ThemeButton";
-import { ThemeContext, themes } from "./Theme";
 
 export default function Navigation() {
-  const { theme } = useContext(ThemeContext);
-
-  const themeColor = themes[theme];
+  const favouritesCart = useSelector(
+    (appState) => appState.favouritesData.favouritesCart
+  );
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -70,10 +71,12 @@ export default function Navigation() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: themeColor.background }}>
+      <AppBar position="static" sx={{ backgroundColor: "lightblue" }}>
         <Toolbar>
           <SearchButton />
-          <FavouritesButton />
+          <Badge badgeContent={favouritesCart.length} color="error">
+            <FavouritesButton />
+          </Badge>
           <ThemeButton />
         </Toolbar>
       </AppBar>

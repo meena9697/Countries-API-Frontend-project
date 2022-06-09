@@ -1,10 +1,10 @@
-const initialCountryState = {
+const initialState = {
   loading: false,
   countryitemData: [],
   error: "",
 };
 
-const countryReducer = (state = initialCountryState, action) => {
+const countryReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_COUNTRY_REQUEST":
       return {
@@ -12,8 +12,7 @@ const countryReducer = (state = initialCountryState, action) => {
         loading: true,
       };
     case "FETCH_COUNTRY_SUCCESS":
-     console.log(action.payload, "Mazen")
-      return {
+        return {
         loading: false,
         countryitemData: action.payload,
         error: "",
