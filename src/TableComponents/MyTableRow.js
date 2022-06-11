@@ -91,13 +91,14 @@ export default function MyTableRow({ columns, row }) {
             break;
         }
         const value = result;
+        // console.log(typeof value)
         return (
           <TableCell
             key={column.id}
             align={column.align}
             sx={{ color: themeColor.text }}
           >
-            {column.id === "languages" ? (
+            {column.id === "languages" && value ? (
               Object.keys(value).map((item) => {
                 return <p>{value[item]}</p>;
               })

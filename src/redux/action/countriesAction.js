@@ -36,18 +36,10 @@ export const RemoveFavouriteCountries = (favCountry) => {
   };
 };
 
-export const SortByRegion = () => {
+export const SortBy = (label) => {
+  console.log(label, "fromsortby");
   return {
-    type: "SORT_BY_REGION",
-  };
-};
-export const SortByName = () => {
-  return {
-    type: "SORT_BY_NAME"
-  };
-};
-export const SortByPopulation = () => {
-  return {
-    type: "SORT_BY_POP",
+    type: "SORT_BY",
+    label,
   };
 };

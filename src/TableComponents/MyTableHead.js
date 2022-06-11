@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch} from "react-redux";
 
-import { SortByName, SortByPopulation, SortByRegion } from "../redux/action/countriesAction";
+import { SortBy } from "../redux/action/countriesAction";
 
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -11,18 +11,9 @@ import { TableSortLabel } from "@mui/material";
 export default function MyTableHead({ columns}) {
   const dispatch = useDispatch();
 
-  const handleSorting = () => {
-        dispatch (SortByRegion());
+  const handleSorting = (label) => {
+    dispatch (SortBy(label));
   }
-
-  const handlenameSorting = ()=>{
-    dispatch (SortByName());
-  };
-  
-  const handlepopSorting = ()=>{
-    dispatch (SortByPopulation());
-  };
-
   return (
     <TableHead>
       <TableRow>
@@ -38,9 +29,7 @@ export default function MyTableHead({ columns}) {
             }}
           >
             {column.label}
-            <TableSortLabel onClick={handleSorting} />
-            {/* <TableSortLabel onClick={handlenameSorting} /> */}
-
+            <TableSortLabel onClick={() => handleSorting(column.id)} />
           </TableCell>
         ))}
       </TableRow>
