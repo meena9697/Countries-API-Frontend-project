@@ -68,7 +68,7 @@ export default function ThemeButton() {
       <FormControlLabel
         control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
         label="Switch"
-        sx={{ color: themeColor.text, marginLeft: "25rem" }}
+        sx={{ color: themeColor.text, marginLeft: "25rem"}}
         onClick={Handler}
       />
     </div>

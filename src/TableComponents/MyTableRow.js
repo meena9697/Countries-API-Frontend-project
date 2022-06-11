@@ -6,7 +6,7 @@ import { useContext } from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { IconButton } from "@mui/material";
+import { IconButton} from "@mui/material";
 
 import {
   AddFavouriteCountries,
@@ -31,8 +31,7 @@ export default function MyTableRow({ columns, row }) {
     });
     if (itemExist) {
       dispatch(RemoveFavouriteCountries(favCountry));
-    }
-    else{
+    } else {
       dispatch(AddFavouriteCountries(favCountry));
     }
   };

@@ -22,7 +22,7 @@ export const SearchCountriesResult = (success) => {
 };
 
 export const AddFavouriteCountries = (favCountry) => {
-  console.log(favCountry, " This is favourite country")
+  console.log(favCountry, " This is favourite country");
   return {
     type: "ADD_FAV_COUNTRIES",
     payload: favCountry,
@@ -33,5 +33,21 @@ export const RemoveFavouriteCountries = (favCountry) => {
   return {
     type: "REMOVE_FAV_COUNTRIES",
     payload: favCountry,
+  };
+};
+
+export const SortByRegion = () => {
+  return {
+    type: "SORT_BY_REGION",
+  };
+};
+export const SortByName = () => {
+  return {
+    type: "SORT_BY_NAME"
+  };
+};
+export const SortByPopulation = () => {
+  return {
+    type: "SORT_BY_POP",
   };
 };
