@@ -6,7 +6,7 @@ import { useContext } from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { IconButton} from "@mui/material";
+import { IconButton } from "@mui/material";
 
 import {
   AddFavouriteCountries,
@@ -98,7 +98,9 @@ export default function MyTableRow({ columns, row }) {
             align={column.align}
             sx={{ color: themeColor.text }}
           >
-            {column.id === "languages" && value ? (
+            {column.format ? (
+              column.format(result)
+            ) : column.id === "languages" && value ? (
               Object.keys(value).map((item) => {
                 return <p>{value[item]}</p>;
               })

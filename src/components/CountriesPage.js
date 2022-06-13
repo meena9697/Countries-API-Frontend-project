@@ -26,7 +26,7 @@ const columns = [
     label: "Population",
     minWidth: 170,
     align: "left",
-    // format: (value) => value.toLocaleString("en-US"),
+    format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "languages",
@@ -69,7 +69,6 @@ function CountriesPage() {
   return (
     <div>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        {/* <input placeholder="Search country..." onChange={handleSearch}></input> */}
         <Navigation />
         <TableContainer sx={{ maxHeight: 650 }}>
           <Table stickyHeader aria-label="sticky table">
@@ -79,7 +78,6 @@ function CountriesPage() {
               rowsPerPage={rowsPerPage}
               page={page}
               columns={columns}
-              // countriesSearch={countriesSearch}
             />
           </Table>
         </TableContainer>

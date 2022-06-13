@@ -18,6 +18,7 @@ export default function FavouritesPage() {
   const favouritesCartList = useSelector(
     (appState) => appState.favouritesData.favouritesCart
   );
+  
   function DeleteCountryFromFavourites(favCountry) {
     dispatch(RemoveFavouriteCountries(favCountry));
   }
@@ -80,10 +81,10 @@ export default function FavouritesPage() {
             </Card>
           );
         })}
-        <CardActions sx={{ justifyContent: "center" }}>
-          <Link to="/countries">Back</Link>
-        </CardActions>
       </Box>
+      <CardActions sx={{ justifyContent: "center" }}>
+        <Link to="/countries">Back</Link>{" "}
+      </CardActions>
     </React.Fragment>
   );
 }
