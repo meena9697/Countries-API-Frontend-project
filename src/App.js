@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ButtonPage />} />
         <Route path="/countries" element={<CountriesPage />} />
-        <Route path="/countries/:id" element={<CountryPage />} />
+        <Route path="/countries/:country_name" element={<CountryPage />} />
         <Route path="/favourites" element={<FavouritesPage />} />
 
       </Routes>

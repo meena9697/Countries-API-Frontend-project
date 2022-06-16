@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { matchPath, useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { fetchCountryData } from "../redux/action/countryAction";
+import {AppState} from "../types";
 
 // import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -14,22 +15,28 @@ import { CardMedia } from "@mui/material";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 
-export default function CountryPage() {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const match = matchPath({ path: "/countries/:id" }, location.pathname);
-  const country_name = match.params.id;
 
-  const country = useSelector(
-    (appState) => appState.countryitemData.countryitemData
+export default function CountryPage() {
+  // const location = useLocation();
+  const { country_name } =useParams()
+  const dispatch = useDispatch<any>();
+
+  // const match = matchPath({ path: "/countries/:id" }, location.pathname);
+  // const country_name = match.params.id;
+
+  const state = useSelector((appState)=>appState)
+  console.log(state, "this is state");
+
+  const{ countryitemData: country, error, loading} = useSelector(
+    (appState: AppState) => appState.countryitemData
   );
 
   const seleted_country = country.filter(
     (data) => data.name.common.toLowerCase() === country_name.toLowerCase()
   )[0];
 
-  const loading = useSelector((appState) => appState.countryitemData.loading);
-  const error = useSelector((appState) => appState.countryitemData.error);
+  // const loading = useSelector((appState) => appState.countryitemData.loading);
+  // const error = useSelector((appState) => appState.countryitemData.error);
 
   useEffect(() => {
     dispatch(fetchCountryData(country_name));
@@ -63,7 +70,7 @@ export default function CountryPage() {
                 color="text.secondary"
                 gutterBottom
               >
-                <b>Country</b>: {country_name}
+                <b>Country</b>: {seleted_country.name.common}
               </Typography>
               <Typography
                 sx={{ fontSize: 20, color: "black" }}

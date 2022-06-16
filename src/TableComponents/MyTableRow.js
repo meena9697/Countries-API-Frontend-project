@@ -100,7 +100,7 @@ export default function MyTableRow({ columns, row }) {
           >
             {column.format ? (
               column.format(result)
-            ) : column.id === "languages" && value ? (
+            ) : column.id === "languages"&& value ?(
               Object.keys(value).map((item) => {
                 return <p>{value[item]}</p>;
               })
