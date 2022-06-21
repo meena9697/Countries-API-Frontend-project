@@ -10,7 +10,7 @@ import { ThemeContext, themes } from "./Theme";
 export default function FavouritesButton() {
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
-
+console.log(theme,"thisnis theme")
   const themeColor = themes[theme];
 
   return (

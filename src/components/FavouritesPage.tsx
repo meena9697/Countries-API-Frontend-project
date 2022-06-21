@@ -11,15 +11,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 
 import { RemoveFavouriteCountries } from "../redux/action/countriesAction";
+import { AppState, Country } from "../types";
 
 export default function FavouritesPage() {
   const dispatch = useDispatch();
 
   const favouritesCartList = useSelector(
-    (appState) => appState.favouritesData.favouritesCart
+    (appState: AppState) => appState.favouritesData.favouritesCart
   );
-  
-  function DeleteCountryFromFavourites(favCountry) {
+
+  function DeleteCountryFromFavourites(favCountry: Country) {
     dispatch(RemoveFavouriteCountries(favCountry));
   }
 
@@ -39,19 +40,16 @@ export default function FavouritesPage() {
           return (
             <Card
               sx={{
-                width: 250,
-                height: 500,
+                maxwidth: 300,
+                maxheight: 1000,
                 margin: "1rem",
                 textAlign: "center",
               }}
             >
               <CardHeader title={favCountry.name.common} />
-              <CardMedia
-                component="img"
-                alt="image"
-                img
-                src={favCountry.flags.png}
-              />
+              <CardMedia>
+                <img src={favCountry.flags.png} />
+              </CardMedia>
               <Typography sx={{ fontSize: 20, color: "black" }}>
                 <b>Region</b>: {favCountry.region}
               </Typography>
@@ -72,6 +70,22 @@ export default function FavouritesPage() {
                   </Typography>
                 );
               })}
+              <Typography sx={{ fontSize: 20, color: "black" }}>
+                <b>Currencies</b>:
+              </Typography>
+              {Object.keys(favCountry.currencies).map((currency) => {
+                return (
+                  <Typography
+                    sx={{ fontSize: 20, color: "black" }}
+                    color="text.secondary"
+                    key={favCountry.currencies[currency].name}
+                    component="p"
+                  >
+                    {favCountry.currencies[currency].name},
+                    {favCountry.currencies[currency].symbol}
+                  </Typography>
+                );
+              })}
               <IconButton
                 aria-label="Delete"
                 onClick={() => DeleteCountryFromFavourites(favCountry)}
@@ -83,7 +97,7 @@ export default function FavouritesPage() {
         })}
       </Box>
       <CardActions sx={{ justifyContent: "center" }}>
-        <Link to="/countries">Back</Link>{" "}
+        <Link to="/countries">Back</Link>
       </CardActions>
     </React.Fragment>
   );

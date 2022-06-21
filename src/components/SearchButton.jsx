@@ -53,7 +53,7 @@ function SearchButton() {
   const themeColor = themes[theme];
 
   const dispatch = useDispatch();
-  function handleChange(e) {
+  function handleChange(e : any) {
     dispatch(SearchCountriesResult(e.target.value));
   }
   return (

@@ -15,7 +15,7 @@ export type AppState = {
   };
 };
 
-type Country = {
+export type Country = {
   country_name: string
   name: {
     common: string
@@ -29,5 +29,11 @@ type Country = {
     png: string
   };
   population: number
+  currencies: {
+    [key: string]: {
+      name: string
+      symbol: any
+    }
+  }
 };
-
+ 

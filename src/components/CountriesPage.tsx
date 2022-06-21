@@ -11,6 +11,7 @@ import Navigation from "./Navigation";
 import MyTableBody from "../TableComponents/MyTableBody";
 import MyTableHead from "../TableComponents/MyTableHead";
 import { fetchCountries } from "../redux/action/countriesAction";
+import { AppState } from "../types";
 
 const columns = [
   {
@@ -26,7 +27,7 @@ const columns = [
     label: "Population",
     minWidth: 170,
     align: "left",
-    format: (value) => value.toLocaleString("en-US"),
+    format: (value: number) => value.toLocaleString("en-US"),
   },
   {
     id: "languages",
@@ -38,22 +39,28 @@ const columns = [
 ];
 
 function CountriesPage() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (event: any, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (event: any) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
-  const countriesdata = useSelector((appState) => appState.countriesData);
-  const loading = useSelector((appState) => appState.loading);
-  const error = useSelector((appState) => appState.error);
+  const countriesdata = useSelector(
+    (appState: AppState) => appState.countriesData
+  );
+  const loading = useSelector(
+    (appState: AppState) => appState.countriesData.loading
+  );
+  const error = useSelector(
+    (appState: AppState) => appState.countriesData.error
+  );
 
   useEffect(() => {
     dispatch(fetchCountries());

@@ -10,10 +10,11 @@ import { Badge } from "@mui/material";
 import SearchButton from "./SearchButton";
 import FavouritesButton from "./FavouritesButton";
 import ThemeButton from "./ThemeButton";
+import { AppState } from "../types";
 
 export default function Navigation() {
   const favouritesCart = useSelector(
-    (appState) => appState.favouritesData.favouritesCart
+    (appState: AppState) => appState.favouritesData.favouritesCart
   );
 
   const [anchorEl, setAnchorEl] = React.useState(null);

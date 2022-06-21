@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { fetchCountryData } from "../redux/action/countryAction";
-import {AppState} from "../types";
+import { AppState } from "../types";
 
-// import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -15,28 +14,20 @@ import { CardMedia } from "@mui/material";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 
-
 export default function CountryPage() {
-  // const location = useLocation();
-  const { country_name } =useParams()
+  const { country_name } = useParams();
+  console.log(country_name, "COUNTRY");
+
   const dispatch = useDispatch<any>();
 
-  // const match = matchPath({ path: "/countries/:id" }, location.pathname);
-  // const country_name = match.params.id;
-
-  const state = useSelector((appState)=>appState)
+  const state = useSelector((appState) => appState);
   console.log(state, "this is state");
 
-  const{ countryitemData: country, error, loading} = useSelector(
-    (appState: AppState) => appState.countryitemData
-  );
+  const {countryitemData: country,error,loading} = useSelector((appState: AppState) => appState.countryitemData);
 
-  const seleted_country = country.filter(
-    (data) => data.name.common.toLowerCase() === country_name.toLowerCase()
+  const seleted_country = country.filter((data) =>
+    data.name.common.toLowerCase()
   )[0];
-
-  // const loading = useSelector((appState) => appState.countryitemData.loading);
-  // const error = useSelector((appState) => appState.countryitemData.error);
 
   useEffect(() => {
     dispatch(fetchCountryData(country_name));
@@ -53,11 +44,24 @@ export default function CountryPage() {
   function card() {
     return (
       <React.Fragment>
+        <Typography
+          sx={{
+            fontSize: 20,
+            color: "black",
+            textAlign: "center",
+            marginTop: "5rem",
+            marginRight: "5rem",
+          }}
+          color="text.secondary"
+          gutterBottom
+        >
+          <b>{seleted_country.name.common}</b>
+        </Typography>
         <Box
           sx={{
             display: "flex",
-            padding: "5rem",
-            marginLeft: "30rem",
+            marginLeft: "35rem",
+            maxHeight: "50rem",
           }}
         >
           <Card>
@@ -65,13 +69,6 @@ export default function CountryPage() {
               <img src={seleted_country.flags.png} alt={""} />
             </CardMedia>
             <CardContent sx={{ textAlign: "center" }}>
-              <Typography
-                sx={{ fontSize: 20, color: "black" }}
-                color="text.secondary"
-                gutterBottom
-              >
-                <b>Country</b>: {seleted_country.name.common}
-              </Typography>
               <Typography
                 sx={{ fontSize: 20, color: "black" }}
                 color="text.secondary"
@@ -86,6 +83,7 @@ export default function CountryPage() {
               >
                 <b>Population</b>: {seleted_country.population}
               </Typography>
+
               <Typography sx={{ fontSize: 20, color: "black" }}>
                 <b>Languages</b>:
               </Typography>
@@ -98,6 +96,22 @@ export default function CountryPage() {
                     key={seleted_country.cca2}
                   >
                     {seleted_country.languages[key]}
+                  </Typography>
+                );
+              })}
+              <Typography sx={{ fontSize: 20, color: "black" }}>
+                <b>Currencies</b>:
+              </Typography>
+              {Object.keys(seleted_country.currencies).map((currency) => {
+                return (
+                  <Typography
+                    sx={{ fontSize: 20, color: "black" }}
+                    color="text.secondary"
+                    key={seleted_country.currencies[currency].name}
+                    component="p"
+                  >
+                    {seleted_country.currencies[currency].name},
+                    {seleted_country.currencies[currency].symbol}
                   </Typography>
                 );
               })}

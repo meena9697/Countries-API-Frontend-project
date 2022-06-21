@@ -11,14 +11,15 @@ export const themes = {
   },
 };
 
-export const ThemeContext = createContext(themes.light);
 
-export default function Theme({ children }) {
+export const ThemeContext = createContext(themes.light)
+
+export default function Theme({children}) {
   const [theme, setTheme] = useState("light");
-
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 }
+
