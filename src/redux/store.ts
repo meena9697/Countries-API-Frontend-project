@@ -8,7 +8,14 @@ import allReducers from "./reducer";
 // );
 
 const middlewares = [thunk]
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+let composeEnhancers = compose
+
+if(process.env.NODE_ENV === 'development'){
+  if((window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__){
+    composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 
+  }
+}
+
 const store = createStore(
   allReducers, 
   composeEnhancers(applyMiddleware(...middlewares)

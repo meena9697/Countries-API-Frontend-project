@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 
-import { RemoveFavouriteCountries } from "../redux/action/countriesAction";
+import { removeFavouriteCountries } from "../redux/action/countriesAction";
 import { AppState, Country } from "../types";
 
 export default function FavouritesPage() {
@@ -21,7 +21,7 @@ export default function FavouritesPage() {
   );
 
   function DeleteCountryFromFavourites(favCountry: Country) {
-    dispatch(RemoveFavouriteCountries(favCountry));
+    dispatch(removeFavouriteCountries(favCountry));
   }
 
   return (

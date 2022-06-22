@@ -1,5 +1,21 @@
-import React, { createContext, useState } from "react";
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useState,
+} from "react";
 
+type ThemeType = "light" | "dark";
+type Theme = {
+  background: string;
+  text: string;
+};
+
+interface ThemeContextProps {
+  themeType: ThemeType;
+  theme: Theme;
+  setThemeType: null | Dispatch<SetStateAction<ThemeType>>;
+}
 export const themes = {
   light: {
     background: "white",
@@ -11,15 +27,22 @@ export const themes = {
   },
 };
 
+export const ThemeContext = createContext<ThemeContextProps>({
+  themeType: "light",
+  theme: themes["light"],
+  setThemeType: null,
+});
+type ThemeProps = {
+  children: React.ReactNode;
+};
 
-export const ThemeContext = createContext(themes.light)
-
-export default function Theme({children}) {
-  const [theme, setTheme] = useState("light");
+export default function Theme({ children }: ThemeProps) {
+  const [themeType, setThemeType] = useState<ThemeType>("light");
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider
+      value={{ theme: themes[themeType], themeType, setThemeType }}
+    >
       {children}
     </ThemeContext.Provider>
   );
 }
-

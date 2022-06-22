@@ -4,8 +4,8 @@ import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
 
 import { useDispatch } from "react-redux";
-import { SearchCountriesResult } from "../redux/action/countriesAction";
-import { ThemeContext, themes } from "./Theme";
+import { searchCountriesResult } from "../redux/action/countriesAction";
+import { ThemeContext } from "./Theme";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -50,22 +50,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function SearchButton() {
   const { theme } = useContext(ThemeContext);
 
-  const themeColor = themes[theme];
-
   const dispatch = useDispatch();
   function handleChange(e : any) {
-    dispatch(SearchCountriesResult(e.target.value));
+    dispatch(searchCountriesResult(e.target.value));
   }
   return (
     <div>
       <Search>
         <SearchIconWrapper>
-          <SearchIcon sx={{ color: themeColor.text }} />
+          <SearchIcon sx={{ color: theme.text }} />
         </SearchIconWrapper>
         <StyledInputBase
           placeholder="Search Country..."
           inputProps={{ "aria-label": "search" }}
-          sx={{ color: themeColor.text }}
+          sx={{ color: theme.text }}
           onChange={handleChange}
         />
       </Search>

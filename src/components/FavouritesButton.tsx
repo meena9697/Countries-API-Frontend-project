@@ -5,13 +5,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 
-import { ThemeContext, themes } from "./Theme";
+import { ThemeContext } from "./Theme";
 
 export default function FavouritesButton() {
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
-console.log(theme,"thisnis theme")
-  const themeColor = themes[theme];
 
   return (
     <div>
@@ -19,7 +17,7 @@ console.log(theme,"thisnis theme")
       control={<FavoriteIcon sx={{ color: "red" }} />}
       label="Favourites"
       sx={{
-        color: themeColor.text,
+        color: theme.text,
         marginLeft: "20rem",
         fontSize: "1rem",
       }}

@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 
-import { ThemeContext, themes } from "./Theme";
+import { ThemeContext } from "./Theme";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -53,22 +53,21 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function ThemeButton() {
-  const { theme, setTheme } = useContext(ThemeContext);
-  const themeColor = themes[theme];
+  const { theme, themeType, setThemeType } = useContext(ThemeContext);
 
   const Handler = () => {
-    if (theme === "dark") {
-      setTheme("light");
+    if (themeType === "dark") {
+      setThemeType("light");
       return;
     }
-    setTheme("dark");
+    setThemeType("dark");
   };
   return (
     <div>
       <FormControlLabel
         control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
         label="Switch"
-        sx={{ color: themeColor.text, marginLeft: "25rem"}}
+        sx={{ color: theme.text, marginLeft: "25rem"}}
         onClick={Handler}
       />
     </div>

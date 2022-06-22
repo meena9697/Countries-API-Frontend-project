@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { TableSortLabel } from "@mui/material";
 
-export default function MyTableHead({ columns}) {
+export default function MyTableHead({ columns }) {
   const dispatch = useDispatch();
 
   const handleSorting = (label) => {

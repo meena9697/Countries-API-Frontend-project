@@ -9,33 +9,32 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 
 import {
-  AddFavouriteCountries,
-  RemoveFavouriteCountries,
+  addFavouriteCountries,
+  removeFavouriteCountries,
 } from "../redux/action/countriesAction";
-import { ThemeContext, themes } from "../Components/Theme";
+import { ThemeContext } from "../Components/Theme";
+import { AppState, Country } from "../types";
 
 export default function MyTableRow({ columns, row }) {
   const dispatch = useDispatch();
 
   const { theme } = useContext(ThemeContext);
 
-  const themeColor = themes[theme];
-
   const favouritesCart = useSelector(
-    (appState) => appState.favouritesData.favouritesCart
+    (appState: AppState) => appState.favouritesData.favouritesCart
   );
 
-  const onClickHandler = (favCountry) => {
+  const onClickHandler = (favCountry: Country) => {
     const itemExist = favouritesCart.some((item) => {
       return item.name.common === favCountry.name.common;
     });
     if (itemExist) {
-      dispatch(RemoveFavouriteCountries(favCountry));
+      dispatch(removeFavouriteCountries(favCountry));
     } else {
-      dispatch(AddFavouriteCountries(favCountry));
+      dispatch(addFavouriteCountries(favCountry));
     }
   };
-  function ToggleFavouriteIcon(favCountry) {
+  function ToggleFavouriteIcon(favCountry: Country) {
     const itemExist = favouritesCart.some(
       (item) => item.name.common === favCountry.name.common
     );
@@ -48,10 +47,10 @@ export default function MyTableRow({ columns, row }) {
       role="checkbox"
       tabIndex={-1}
       key={row.code}
-      sx={{ backgroundColor: themeColor.background }}
+      sx={{ backgroundColor: theme.background }}
     >
       {columns.map((column) => {
-        let result = "";
+        let result;
         switch (column.id) {
           case "flags":
             result = <img src={row.flags.png} alt={""} />;
@@ -91,12 +90,11 @@ export default function MyTableRow({ columns, row }) {
             break;
         }
         const value = result;
-        // console.log(typeof value)
         return (
           <TableCell
             key={column.id}
             align={column.align}
-            sx={{ color: themeColor.text }}
+            sx={{ color: theme.text }}
           >
             {column.format ? (
               column.format(result)

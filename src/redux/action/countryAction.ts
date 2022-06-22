@@ -1,26 +1,30 @@
-export const fetchCountryRequest = () => {
+import { Dispatch } from "redux";
+
+import { Country } from "../../types"
+import { FetchCountryRequest, FetchCountrySuccess, FetchCountryFailure} from "./actiontypes"
+
+export const fetchCountryRequest = (): FetchCountryRequest => {
   return {
       type: "FETCH_COUNTRY_REQUEST",
   };
 };
 
-export const fetchCountrySuccess = (response) => {
-  console.log(response, "REDUCER_COUNTRYACTION");
+export const fetchCountrySuccess = (response: Country[]):FetchCountrySuccess  => {
   return {
       type: "FETCH_COUNTRY_SUCCESS",
-      payload: response,
+      payload: { response },
   };
 };
 
-export const fetchCountryFailure = (error) => {
+export const fetchCountryFailure = (error: any): FetchCountryFailure => {
   return {
       type: "FETCH_COUNTRY_FAILURE",
       payload: { error },
   };
 };
 
-export const fetchCountryData = (country_name) => {
-  return async (dispatch) => {
+export const fetchCountryData = (country_name: string) => {
+  return async (dispatch: Dispatch) => {
       try {
           dispatch(fetchCountryRequest());
           const response = await fetch(

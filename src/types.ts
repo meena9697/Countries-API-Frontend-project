@@ -10,10 +10,12 @@ export type AppState = {
     error: null | string;
     loading: boolean;
   };
-  favouritesData: {
-    favouritesCart: Country[];
-  };
+  favouritesData: FavouritesDataInitialState
 };
+
+export type FavouritesDataInitialState = {
+  favouritesCart: Country[];
+}
 
 export type Country = {
   country_name: string
