@@ -56,7 +56,7 @@ export const removeFavouriteCountries = (favCountry: Country): RemoveFavouriteCo
   };
 };
 
-export const sortBy = (label: any): SortBy => {
+export const sortBy = (label: string): SortBy => {
   return {
     type: "SORT_BY",
     payload: {label}

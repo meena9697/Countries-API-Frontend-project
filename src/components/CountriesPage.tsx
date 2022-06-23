@@ -11,9 +11,9 @@ import Navigation from "./Navigation";
 import MyTableBody from "../TableComponents/MyTableBody";
 import MyTableHead from "../TableComponents/MyTableHead";
 import { fetchCountries } from "../redux/action/countriesAction";
-import { AppState } from "../types";
+import { AppState, Column } from "../types";
 
-const columns = [
+const columns: Column[] = [
   {
     id: "flags",
     label: "Flag",
@@ -27,7 +27,7 @@ const columns = [
     label: "Population",
     minWidth: 170,
     align: "left",
-    format: (value: number) => value.toLocaleString("en-US"),
+    format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "languages",

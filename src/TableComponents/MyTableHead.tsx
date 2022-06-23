@@ -1,23 +1,28 @@
 import React from "react";
 import { useDispatch} from "react-redux";
 
-import { SortBy } from "../redux/action/countriesAction";
+import { sortBy } from "../redux/action/countriesAction";
 
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { TableSortLabel } from "@mui/material";
+import { Column } from "../types";
 
-export default function MyTableHead({ columns }) {
-  const dispatch = useDispatch();
+type TableHead = {
+  columns: Column[],
+}
 
-  const handleSorting = (label) => {
-    dispatch (SortBy(label));
+export default function MyTableHead({ columns }:TableHead ) {
+  const dispatch = useDispatch<any>();
+
+  const handleSorting = (label: string) => {
+    dispatch (sortBy(label));
   }
   return (
     <TableHead>
       <TableRow>
-        {columns.map((column) => (
+        {columns.map((column: Column) => (
           <TableCell
             key={column.id}
             align={column.align}

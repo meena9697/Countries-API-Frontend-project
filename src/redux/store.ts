@@ -6,7 +6,6 @@ import allReducers from "./reducer";
 //   reducer,
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // );
-
 const middlewares = [thunk]
 let composeEnhancers = compose
 

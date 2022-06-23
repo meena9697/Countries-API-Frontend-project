@@ -26,17 +26,17 @@ const countriesReducer = (state = initialState, action: ActionTypes) => {
 
     case "FETCH_COUNTRIES_SUCCESS":
       return {
+        ...state,
         loading: false,
-        countriesData: action.payload,
-        SearchCountries: action.payload,
-        error: "",
+        countriesData: action.payload.response,
+        SearchCountries: action.payload.response,
       };
 
     case "FETCH_COUNTRIES_FAILURE":
       return {
+        ...state,
         loading: false,
-        countriesData: [],
-        error: action.payload,
+        error: action.payload.error,
       };
 
     case "SEARCH_COUNTRIES_SUCCESS":

@@ -8,14 +8,16 @@ import TableCell from "@mui/material/TableCell";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 
-import {
-  addFavouriteCountries,
-  removeFavouriteCountries,
-} from "../redux/action/countriesAction";
+import { addFavouriteCountries, removeFavouriteCountries } from "../redux/action/countriesAction";
 import { ThemeContext } from "../Components/Theme";
-import { AppState, Country } from "../types";
+import { AppState, Country, Column} from "../types";
 
-export default function MyTableRow({ columns, row }) {
+type TableRow = {
+  columns: Column[],
+  row: Country
+}
+
+export default function MyTableRow({ columns, row }: TableRow) {
   const dispatch = useDispatch();
 
   const { theme } = useContext(ThemeContext);
@@ -46,11 +48,11 @@ export default function MyTableRow({ columns, row }) {
       hover
       role="checkbox"
       tabIndex={-1}
-      key={row.code}
+      key={row.cca2}
       sx={{ backgroundColor: theme.background }}
     >
-      {columns.map((column) => {
-        let result;
+      {columns.map((column: Column) => {
+        let result: any;
         switch (column.id) {
           case "flags":
             result = <img src={row.flags.png} alt={""} />;

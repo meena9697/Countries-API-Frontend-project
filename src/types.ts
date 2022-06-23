@@ -38,4 +38,11 @@ export type Country = {
     }
   }
 };
- 
+export type Column = {
+  id: "name" | "languages" | "population" | "favourites" | "flags" | "region";
+  label: string;
+  minWidth?: number;
+  align?: "left"| "center" | "right";
+  sort?: boolean;
+  format?: (value: number) => void | any;
+};

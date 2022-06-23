@@ -16,21 +16,26 @@ import Box from "@mui/material/Box";
 
 export default function CountryPage() {
   const { country_name } = useParams();
-  console.log(country_name, "COUNTRY");
 
   const dispatch = useDispatch<any>();
 
   const state = useSelector((appState) => appState);
   console.log(state, "this is state");
 
-  const {countryitemData: country,error,loading} = useSelector((appState: AppState) => appState.countryitemData);
+  const {
+    countryitemData: country,
+    error,
+    loading,
+  } = useSelector((appState: AppState) => appState.countryitemData);
 
   const seleted_country = country.filter((data) =>
     data.name.common.toLowerCase()
   )[0];
 
   useEffect(() => {
-    dispatch(fetchCountryData(country_name));
+    if (country_name) {
+      dispatch(fetchCountryData(country_name));
+    }
   }, [dispatch, country_name]);
 
   if (error) return <div>There is an error</div>;

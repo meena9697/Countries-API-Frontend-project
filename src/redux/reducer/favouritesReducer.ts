@@ -8,7 +8,7 @@ const initialState: FavouritesDataInitialState = {
 const favouritesReducer = (state = initialState, action: ActionTypes) => {
   switch (action.type) {
     case "ADD_FAV_COUNTRIES":
-      const newFavCountry = [...state.favouritesCart, action.payload];
+      const newFavCountry = [...state.favouritesCart, action.payload.favCountry];
       return {
         ...state,
         favouritesCart: newFavCountry,

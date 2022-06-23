@@ -21,15 +21,15 @@ const countryReducer = (state = initialState, action:ActionTypes ) => {
       };
     case "FETCH_COUNTRY_SUCCESS":
         return {
+          ...state,
         loading: false,
-        countryitemData: action.payload,
-        error: "",
+        countryitemData: action.payload.response,
       };
     case "FETCH_COUNTRY_FAILURE":
       return {
+        ...state,
         loading: false,
-        countryitemData: [],
-        error: action.payload,
+        error: action.payload.error,
       };
     default:
       return state;
