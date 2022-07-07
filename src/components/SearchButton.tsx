@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
+
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
 
-import { useDispatch } from "react-redux";
 import { searchCountriesResult } from "../redux/action/countriesAction";
 import { ThemeContext } from "./Theme";
 

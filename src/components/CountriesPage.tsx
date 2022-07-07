@@ -13,6 +13,7 @@ import MyTableHead from "../TableComponents/MyTableHead";
 import { fetchCountries } from "../redux/action/countriesAction";
 import { AppState, Column } from "../types";
 
+
 const columns: Column[] = [
   {
     id: "flags",

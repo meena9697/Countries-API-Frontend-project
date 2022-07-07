@@ -9,6 +9,7 @@ import { CardMedia, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 import { removeFavouriteCountries } from "../redux/action/countriesAction";
 import { AppState, Country } from "../types";
@@ -97,7 +98,9 @@ export default function FavouritesPage() {
         })}
       </Box>
       <CardActions sx={{ justifyContent: "center" }}>
-        <Link to="/countries">Back</Link>
+        <Link to="/countries">
+        <Button variant="contained">Back</Button>
+        </Link>
       </CardActions>
     </React.Fragment>
   );

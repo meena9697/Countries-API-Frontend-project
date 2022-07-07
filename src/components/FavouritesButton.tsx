@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-
 import { ThemeContext } from "./Theme";
 
 export default function FavouritesButton() {

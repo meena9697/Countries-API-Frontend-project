@@ -1,7 +1,6 @@
 import React from "react";
 
 import TableBody from "@mui/material/TableBody";
-
 import MyTableRow from "./MyTableRow";
 import { Country, Column } from "../types";
 

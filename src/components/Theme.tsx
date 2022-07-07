@@ -14,7 +14,7 @@ type Theme = {
 interface ThemeContextProps {
   themeType: ThemeType;
   theme: Theme;
-  setThemeType: string | Dispatch<SetStateAction<ThemeType>> | null;
+  setThemeType: Dispatch<SetStateAction<ThemeType>> | any;
 }
 export const themes = {
   light: {

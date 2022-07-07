@@ -2,12 +2,12 @@ import React from "react";
 import { useDispatch} from "react-redux";
 
 import { sortBy } from "../redux/action/countriesAction";
+import { Column } from "../types";
 
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { TableSortLabel } from "@mui/material";
-import { Column } from "../types";
 
 type TableHead = {
   columns: Column[],

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+
 import ButtonPage from "./Components/ButtonPage";
 import CountriesPage from "./Components/CountriesPage";
 import CountryPage from "./Components/CountryPage";
@@ -11,9 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<ButtonPage />} />
         <Route path="/countries" element={<CountriesPage />} />
-        <Route path="/countries/:country_name" element={<CountryPage />} />
+        <Route path="/countries/:country_name" element={<CountryPage/>} />
         <Route path="/favourites" element={<FavouritesPage />} />
-
       </Routes>
     </>
   );
